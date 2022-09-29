@@ -9,14 +9,20 @@ import (
 	"gorm.io/gorm"
 )
 
-func InitPosgreSQL() *gorm.DB {
+var postgresConn *gorm.DB
+
+func InitPosgreSQL() {
+	var err error
+
 	config := env.GetSQLEnv()
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
 		config.Host, config.User, config.Password, config.DBName, config.Port)
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	postgresConn, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("error connecting to the database: ", err)
 	}
+}
 
-	return db
+func GetPosgreSQLConnection() *gorm.DB {
+	return postgresConn
 }
