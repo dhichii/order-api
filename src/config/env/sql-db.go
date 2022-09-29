@@ -16,8 +16,7 @@ type sqlEnv struct {
 
 func GetSQLEnv() sqlEnv {
 	// load env file
-	err := godotenv.Load("app.env")
-	if err != nil {
+	if err := godotenv.Load("app.env"); err != nil {
 		panic("failed to load env")
 	}
 
