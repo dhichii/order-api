@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 	"log"
+	order "order-api/src/app/order/repository/record"
 	"order-api/src/config/env"
 
 	"gorm.io/driver/postgres"
@@ -21,6 +22,8 @@ func InitPosgreSQL() {
 	if err != nil {
 		log.Fatal("error connecting to the database: ", err)
 	}
+
+	postgresConn.AutoMigrate(&order.Order{}, &order.Item{})
 }
 
 func GetPosgreSQLConnection() *gorm.DB {
