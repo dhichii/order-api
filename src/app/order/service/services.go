@@ -2,7 +2,6 @@ package service
 
 import (
 	"order-api/src/app/order"
-	"order-api/src/app/order/handler/response"
 	"order-api/src/app/order/repository/record"
 )
 
@@ -16,7 +15,7 @@ func (s *service) CreateOrder(data record.Order) error {
 }
 
 // GetOrders list of orders
-func (s *service) GetOrders() ([]response.Order, error) {
+func (s *service) GetOrders() ([]record.Order, error) {
 	return s.repo.GetOrders()
 }
 

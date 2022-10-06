@@ -3,7 +3,6 @@ package repository
 import (
 	"errors"
 	"order-api/src/app/order"
-	"order-api/src/app/order/handler/response"
 	"order-api/src/app/order/repository/record"
 
 	"gorm.io/gorm"
@@ -19,12 +18,12 @@ func (repo *repository) CreateOrder(data record.Order) error {
 }
 
 // GetOrders get list of orders
-func (repo *repository) GetOrders() ([]response.Order, error) {
+func (repo *repository) GetOrders() ([]record.Order, error) {
 	var records []record.Order
 	if err := repo.db.Preload("Items").Find(&records).Error; err != nil {
 		return nil, err
 	}
-	return record.MapToBatchResponse(records), nil
+	return records, nil
 }
 
 // UpdateOrder update order data by the given id
