@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"order-api/src/app/order"
 	"order-api/src/app/order/handler/request"
+	"order-api/src/app/order/handler/response"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -42,7 +43,7 @@ func (h *Handler) GetOrdersHandler(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, orders)
+	c.JSON(http.StatusOK, response.MapToBatchResponse(orders))
 }
 
 // UpdateOrderHandler handler to update the existing order
