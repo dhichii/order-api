@@ -4,7 +4,7 @@ type Order struct {
 	OrderID      int    `gorm:"primaryKey"`
 	CustomerName string `gorm:"type:varchar"`
 	OrderedAt    string
-	Items        []Item
+	Items        []Item `gorm:"constraint:OnDelete:CASCADE"`
 }
 
 type Item struct {

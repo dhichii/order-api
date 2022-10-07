@@ -29,9 +29,6 @@ func (s *service) UpdateOrder(id int, data record.Order) error {
 
 // DeleteOrder delete order and the related items
 func (s *service) DeleteOrder(id int) error {
-	if err := s.repo.DeleteOrderItems(id); err != nil {
-		return err
-	}
 	return s.repo.DeleteOrder(id)
 }
 
