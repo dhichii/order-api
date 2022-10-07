@@ -53,15 +53,6 @@ func (repo *repository) DeleteOrder(id int) error {
 	return query.Error
 }
 
-// DeleteOrderItems delete items data that related with the given order id
-func (repo *repository) DeleteOrderItems(orderID int) error {
-	query := repo.db.Delete(new(record.Item), "order_id", orderID)
-	if query.RowsAffected < 1 && query.Error == nil {
-		return errors.New("record not found")
-	}
-	return query.Error
-}
-
 func NewGORMRepository(db *gorm.DB) order.Repository {
 	return &repository{db}
 }
